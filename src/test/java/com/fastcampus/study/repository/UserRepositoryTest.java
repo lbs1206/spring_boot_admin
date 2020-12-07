@@ -3,8 +3,10 @@ package com.fastcampus.study.repository;
 
 import com.fastcampus.study.StudyApplicationTests;
 
+import com.fastcampus.study.model.entity.Item;
 import com.fastcampus.study.model.entity.User;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,29 +29,39 @@ public class UserRepositoryTest extends StudyApplicationTests {
 
     @Test
     public void create(){
-        User user = new User();
+        String account = "Test01";
+        String password = "Test01";
+        String status = "REGISTERED";
+        String email = "Test01@gmail.com";
+        String phoneNumber = "010-1111-2222";
+        LocalDateTime registeredAt = LocalDateTime.now();
+        LocalDateTime createdAt = LocalDateTime.now();
+        String createdBy = "AdminServer"; // LoginUserAuditorAware 적용으로 자동 createdBy 설정
 
-        user.setAccount("TestUser01");
-        user.setEmail("TestUser01@gmail.com");
-        user.setPhoneNumber("010-1111-3333");
-        user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("admin");
+
+        User user = new User();
+        user.setAccount(account);
+        user.setPassword(password);
+        user.setStatus(status);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+        user.setRegisteredAt(registeredAt);
+        user.setCreatedAt(createdAt); // LoginUserAuditorAware 적용으로 자동 createdAt, createdBy 설정
+        user.setCreatedBy(createdBy);
 
         User newUser = userRepository.save(user);
-        System.out.println("newUSer : " + newUser);
+        Assertions.assertNotNull(newUser);
+        Assertions.assertEquals("AdminServer", newUser.getCreatedBy());
+
+
     }
 
     @Test
+    @Transactional
     public void read(){
-        List<User> userList = userRepository.findAll();
 
-        Optional<User> user = userRepository.findById(2L);//아이디 타입이 2번째가 있으면
-
-        user.ifPresent(selectUser -> {//ID 값이 있으면
-            System.out.println("user : " + selectUser);
-            System.out.println("email : " + selectUser.getEmail());
-        });
-
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
+        Assertions.assertNotNull(user);
 
     }
 
