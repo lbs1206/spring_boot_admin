@@ -30,7 +30,7 @@ public class ItemRepositoryTest extends StudyApplicationTests{
         item.setRegisteredAt(LocalDateTime.now());
         item.setCreatedAt(LocalDateTime.now()); // LoginUserAuditorAware 적용으로 자동 createdAt, createdBy 설정
         item.setCreatedBy("Partner01"); // LoginUserAuditorAware 적용으로 자동 createdAt, createdBy 설정
-        item.setPartnerId(1L);
+        //item.setPartnerId(1L);
 
 
         Item newItem = itemRepository.save(item);
