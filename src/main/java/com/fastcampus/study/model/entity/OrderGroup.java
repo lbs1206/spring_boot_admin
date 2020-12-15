@@ -1,5 +1,6 @@
 package com.fastcampus.study.model.entity;
 
+import com.fastcampus.study.model.enumClass.OrderType;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.apache.tomcat.jni.Local;
@@ -30,7 +31,8 @@ public class OrderGroup {
 
     private String status;
 
-    private String orderType;
+    @Enumerated(EnumType.STRING)
+    private OrderType orderType;
 
     private String revAddress;
 

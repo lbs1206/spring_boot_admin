@@ -1,5 +1,6 @@
 package com.fastcampus.study.model.network.response;
 
+import com.fastcampus.study.model.enumClass.ItemStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +18,7 @@ public class ItemApiResponse {
 
     private Long id;
 
-    private String status;
+    private ItemStatus status;
 
     private String name;
 

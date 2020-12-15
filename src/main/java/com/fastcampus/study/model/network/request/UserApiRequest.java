@@ -1,5 +1,6 @@
 package com.fastcampus.study.model.network.request;
 
+import com.fastcampus.study.model.enumClass.UserStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ public class UserApiRequest {
 
     private String password;
 
-    private String status;
+    private UserStatus status;
 
     private String email;
 

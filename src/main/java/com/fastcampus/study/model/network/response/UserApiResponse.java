@@ -1,5 +1,6 @@
 package com.fastcampus.study.model.network.response;
 
+import com.fastcampus.study.model.enumClass.UserStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +21,7 @@ public class UserApiResponse {
 
     private String password;
 
-    private String status;
+    private UserStatus status;
 
     private String email;
 
