@@ -1,6 +1,8 @@
 package com.fastcampus.study.controller.api;
 
+import com.fastcampus.study.controller.CrudController;
 import com.fastcampus.study.ifs.CrudInterface;
+import com.fastcampus.study.model.entity.Item;
 import com.fastcampus.study.model.network.Header;
 import com.fastcampus.study.model.network.request.ItemApiRequest;
 import com.fastcampus.study.model.network.response.ItemApiResponse;
@@ -10,37 +12,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
+
 @Slf4j
 @RestController
 @RequestMapping("/api/item")
 @RequiredArgsConstructor
-public class ItemApiController implements CrudInterface<ItemApiRequest, ItemApiResponse> {
-
-    @Autowired
-    private ItemApiLogicService itemApiLogicService;
-
-    @Override
-    @PostMapping("")
-    public Header<ItemApiResponse> create(@RequestBody Header<ItemApiRequest> request) {
-        return itemApiLogicService.create(request);
-    }
-
-    @Override
-    @GetMapping("{id}")
-    public Header<ItemApiResponse> read(@PathVariable Long id) {
-        return itemApiLogicService.read(id);
-    }
-
-    @Override
-    @PutMapping("")
-    public Header<ItemApiResponse> update(@RequestBody Header<ItemApiRequest> request) {
-        return itemApiLogicService.update(request);
-    }
-
-    @Override
-    @DeleteMapping("{id}")
-    public Header delete(@PathVariable Long id) {
-        return itemApiLogicService.delete(id);
-    }
+public class ItemApiController extends CrudController<ItemApiRequest, ItemApiResponse, Item> {
 
 }
